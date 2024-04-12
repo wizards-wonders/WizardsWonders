@@ -9,7 +9,6 @@ import "./TransferHelper.sol";
 
 interface IWizardsWonders {
     enum RarityType {None, Boring, Fancy, SuperFancy}
-    enum carType {None, Commander, Wonder, ActionCard,Unit}
 
     function safeTransferFrom(address from, address to, uint256 tokenId) external returns (bool);
     function safeMint(address to_, uint256 tokenId_) external;
@@ -21,7 +20,7 @@ interface IERC20 {
     function transfer(address recipient, uint256 amount) external returns (bool);
 }
 
-contract LootBox is AccessControl, Pausable, ReentrancyGuard {
+contract LootBoxV2 is AccessControl, Pausable, ReentrancyGuard {
     using SafeMath for uint256;
 
     event SetNft(address indexed nft);
@@ -31,8 +30,6 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
         uint256 intervalEnd;
         uint256 price;
     }
-
-    //enum carType {None, Commander, Wonder, ActionCard,Unit}
 
     bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
     bytes32 public constant PAUSE_ROLE = keccak256("PAUSE_ROLE");
