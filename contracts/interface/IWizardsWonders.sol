@@ -3,7 +3,7 @@ pragma solidity ^0.6.0;
 
 interface IWizardsWonders {
     enum RarityType {None, Boring, Fancy, SuperFancy}
-    enum carType {None, Commander, Wonder, ActionCard,Unit}
+    enum carType {None, CoreSet, Commander, Wonder, ActionCard, Unit}
 
     function safeTransferFrom(address from, address to, uint256 tokenId) external returns (bool);
     function safeMint(
@@ -16,4 +16,7 @@ interface IWizardsWonders {
         uint256  PointValue_,
         bool OP_
         ) external;
+
+    function ownerOf(string memory tokenHash_) external view returns(address);
+    function transferFrom(address from_, address to_, string memory tokenHash_) external ;
 }

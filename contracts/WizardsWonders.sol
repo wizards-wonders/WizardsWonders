@@ -37,7 +37,6 @@ contract WizardsWonders is ERC721, AccessControl {
     
     
     enum RarityType {None, Boring, Fancy, SuperFancy}
-    enum carType {None, Commander, Wonder, ActionCard,Unit}
 
     struct tokenAttribS{
         string Series;
@@ -92,6 +91,54 @@ contract WizardsWonders is ERC721, AccessControl {
         uint256  PointValue_,
         bool OP_
         ) public onlyMinter {
+        
+        mint(
+            to_,
+            tokenHash_,
+            Series_,
+            Type_,
+            Rarity_,
+            Faction_,
+            PointValue_,
+            OP_
+        );
+    }
+
+    function batchSafeMint(
+        address[] memory tos_, 
+        string[] memory  tokenHashs_,
+        string[] memory Seriess_,
+        string[] memory Types_,
+        string[] memory Raritys_,
+        string[] memory Factions_,
+        uint256[] memory PointValues_,
+        bool[] memory OPs_
+    ) public onlyMinter{
+        uint256 len = tos_.length-1;
+        for(uint256 i=0; i<=len; i++){
+            mint(
+                tos_[i],
+                tokenHashs_[i],
+                Seriess_[i],
+                Types_[i],
+                Raritys_[i],
+                Factions_[i],
+                PointValues_[i],
+                OPs_[i]
+        );
+        }
+    }
+
+    function mint(
+        address to_, 
+        string memory  tokenHash_,
+        string memory Series_,
+        string memory Type_,
+        string memory Rarity_,
+        string memory Faction_,
+        uint256  PointValue_,
+        bool OP_
+        ) internal  {
         require(!tokenHashMintFlage[tokenHash_],"tokenhash not mint");
         uint256 tokenId_ = ERC721.totalSupply().add(1);
         _safeMint(to_, tokenId_);
@@ -168,6 +215,7 @@ contract WizardsWonders is ERC721, AccessControl {
         return tokenURI(tokenId_);
     }
 
+
     function transferFrom(address from_, address to_, string memory tokenHash_) public   {
         require(tokenHashMintFlage[tokenHash_],"tokenhash not mint");
         uint256 tokenId_ = tokenHashToTokenID[tokenHash_];
@@ -187,6 +235,7 @@ contract WizardsWonders is ERC721, AccessControl {
         );
 
     }
+
 
     function safeTransferFrom(address from_, address to_, string memory tokenHash_) public   {
         require(tokenHashMintFlage[tokenHash_],"tokenhash not mint");
