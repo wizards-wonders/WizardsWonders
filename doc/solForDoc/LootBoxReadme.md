@@ -1,3 +1,18 @@
+step1: mint nft to LootBox contract
+step2: tranfer Hexoer bounes to contract
+step3: setLootBoxList
+step4: setprice;
+step5: setFeeTo;
+
+struct LootBoxListInfo{
+    uint256 tokenList[]
+    uint256 bounes
+}
+*  setFeeTo(address _feeTo);
+*  setPrice(address _feeToken, uint256 _price);
+*  setLootBoxList(LootBoxListInfo [] _lboxList);
+*  BuyLootBox(uint256 _amount);
+
 # There are two ways to implement LootBox:
 ## 1. The contract is only responsible for collecting fees
 ### The contract provides the following interfaces:
