@@ -33,7 +33,11 @@ contract WizardsWonders is ERC721, AccessControl {
     );
 
 
+    
+    
+    
     enum RarityType {None, Boring, Fancy, SuperFancy}
+    enum carType {None, Commander, Wonder, ActionCard,Unit}
 
     struct tokenAttribS{
         string Series;
