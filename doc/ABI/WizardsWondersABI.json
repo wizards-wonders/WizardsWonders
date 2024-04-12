@@ -404,6 +404,54 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address[]",
+				"name": "tos_",
+				"type": "address[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "tokenHashs_",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "Seriess_",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "Types_",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "Raritys_",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "Factions_",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "PointValues_",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bool[]",
+				"name": "OPs_",
+				"type": "bool[]"
+			}
+		],
+		"name": "batchSafeMint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "tokenHash_",
 				"type": "string"
