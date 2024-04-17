@@ -1,1 +1,2 @@
 # GlostoneAddress deploy 2024
+WizardsWonders deployed to: 0x51F8452d8D80Fc93a04C1391d56aD5872B815B0D

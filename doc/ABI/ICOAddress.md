@@ -1,0 +1,2 @@
+# ICO deploy 2024
+ICO deployed to: 0x3370a9E833E38Ab9Ffe1b89F4Ca04cC935d25307

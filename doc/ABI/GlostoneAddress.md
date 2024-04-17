@@ -1,0 +1,2 @@
+# GlostoneAddress deploy 2024
+Glostone deployed to: 0xe412387B5DDc03c0549e3B1A06bF74b0d01EFe3c

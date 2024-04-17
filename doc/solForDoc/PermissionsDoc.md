@@ -1,31 +1,90 @@
-<!--
-Aaron/Dylan address
-0x49dd878fac5b2D042D161db9FD0F7200068b004B
-0xb37548183D876e04D1Fdd338a1277b9567E9B438
-0x267cAEbDAF946c965a57403D59eb35359FEf444b
-0xCD163B62D11b4BF1a74C6d0b39f3007C6A6B55a7
--->
+
 <!--
 Please fill in the corresponding permission address according to different contracts.
 if your want to add Role pls add to contracts
 -->
 
-# Hexore
-* DEFAULT_ADMIN_ROLE    
+# Hexore  
 * MINTER_ROLE
+<!--MINTER_ROLE
+Minter role is Hexore contract role who can mint Hexore,
+function mint(address to, uint256 amount) public onlyMinter 
+ -->
 * BURNER_ROLE
-# Glostone
-* DEFAULT_ADMIN_ROLE
+<!--BURNER_ROLE
+burner role is Hexore contract role who can burn Hexore,
+function burn(address to, uint256 amount) public onlyBurner
+ -->
 # WizardsWonders
-* DEFAULT_ADMIN_ROLE 
 * MINTER_ROLE
+<!--BURNER_ROLE
+burner role is WizardsWonders contract role who can Mint WizardsWonders NFT Car,
+function safeMint(
+        address to_, 
+        string memory  tokenHash_,
+        string memory Series_,
+        string memory Type_,
+        string memory Rarity_,
+        string memory Faction_,
+        uint256  PointValue_,
+        bool OP_
+        ) public onlyMinter
+function batchSafeMint(
+        address[] memory tos_, 
+        string[] memory  tokenHashs_,
+        string[] memory Seriess_,
+        string[] memory Types_,
+        string[] memory Raritys_,
+        string[] memory Factions_,
+        uint256[] memory PointValues_,
+        bool[] memory OPs_
+    ) public onlyMinter{
+        uint256 len = tos_.length-1;
+        for(uint256 i=0; i<=len; i++){
+            mint(
+                tos_[i],
+                tokenHashs_[i],
+                Seriess_[i],
+                Types_[i],
+                Raritys_[i],
+                Factions_[i],
+                PointValues_[i],
+                OPs_[i]
+        );
+        }
+    }
+
+ -->
 * UPGRADE_ROLE
+<!--UPGRADE_ROLE
+Upgrade role is WizardsWonders contract role who can upgrade WizardsWonders NFT Raity ,
+function changeCardRarity(uint256 tokenId_, RarityType rarityUpgrade_) public onlyUpgrade
+ -->
+
+
 # ICO
-* DEFAULT_ADMIN_ROLE
 * PAUSE_ROLE
+<!--PAUSE_ROLE
+PAUSE role is ICO contract role who can Pause All contract,
+ -->
 
 # LootBox
-* DEFAULT_ADMIN_ROLE
 * PAUSE_ROLE
-* CREATOR_ROLE
+<!--PAUSE_ROLE
+PAUSE role is LootBox contract role who can pause or unpause All contract,
+whenNotPaused
+ -->
 * SETTER_ROLE
+<!--PAUSE_ROLE
+PAUSE role is LootBox contract role who can pause or unpause All contract,
+function setFeeTo(address _feeTo) public onlySetter
+function setPrice(uint256 _price) public onlySetter
+function setBootBoxList(
+        LootBoxListS[] memory _lootLists
+    ) public onlySetter
+function changeBootBoxListInfo(
+        uint256 _index,
+        LootBoxListS memory _lootList
+    ) public onlySetter
+ -->
+
