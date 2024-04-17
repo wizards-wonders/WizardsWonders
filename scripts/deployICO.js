@@ -23,30 +23,36 @@ async function main() {
 
   const baseURI = "http://test/";
 
-  // Glostone
-  const GlostoneContract = await hre.ethers.getContractFactory("Glostone");
-  const GlostoneC= await GlostoneContract.deploy();
-  await GlostoneC.deployed();
-  console.log("[INFO] Glostone deployed to: \033[1;35m%s\033[0m", GlostoneC.address);
-  sleep();
-
-  // Hexore
-  const HexoreContract = await hre.ethers.getContractFactory("Hexore");
-  const HexoreC= await HexoreContract.deploy();
-  const GlostoneCTx = await GlostoneC.deployed();
-  console.log("[INFO] Hexore deployed to: \033[1;35m%s\033[0m", HexoreC.address);
-  sleep();
-  //await GlostoneCTx.wait();
+  
 
   // USDTTest
-  const USDTTestContract = await hre.ethers.getContractFactory("USDTTest");
+  /*const USDTTestContract = await hre.ethers.getContractFactory("USDTTest");
   const USDTTestC= await USDTTestContract.deploy("10000000000000000000000");
   await USDTTestC.deployed();
   console.log("[INFO] USDTTest deployed to: \033[1;35m%s\033[0m", USDTTestC.address);
+  sleep();*/
+  const testUSDT = "0x43B0AA2206136346dfd2f4F2338CD2A273d94205"
+  const GlostoneCAddr = "0xe412387B5DDc03c0549e3B1A06bF74b0d01EFe3c"
+  
+
+  //ICO
+  let ico_config = [
+    {"intervalEnd": "50000000000000000000000000", "price": "10000000000000000"},
+    {"intervalEnd": "75000000000000000000000000", "price": "100000000000000000"},
+    {"intervalEnd": "100000000000000000000000000", "price": "500000000000000000"}
+  ] 
+  const ICOContract = await hre.ethers.getContractFactory("ICO");
+  const ICOC= await ICOContract.deploy(GlostoneCAddr,testUSDT,ico_config);
+  const ICOCtx = await ICOC.deployed();
+  console.log("[INFO] ICO deployed to: \033[1;35m%s\033[0m", ICOC.address);
   sleep();
-  //const testUSDT = "0x43B0AA2206136346dfd2f4F2338CD2A273d94205"
-
-
+  
+  //WizardsWonders
+  const WizardsContract = await hre.ethers.getContractFactory("WizardsWonders");
+  const WizardsC= await WizardsContract.deploy(baseURI);
+  await WizardsC.deployed();
+  console.log("[INFO] WizardsWonders deployed to: \033[1;35m%s\033[0m", WizardsC.address);
+  sleep();
     
 // npx hardhat run scripts/deploy_all.js --network bsc_testnet
     console.log("-----Finish--------");
