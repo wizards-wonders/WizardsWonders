@@ -73,7 +73,7 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
         price = _price;
     }
 
-    function buyLootBox() public{
+    function buyLootBox() public whenNotPaused{
         // check index
         uint256 curIndex = buyBoxIndex;
         require(curIndex < lootBoxList.length-1,"LootBox: not lootbox to sale");
