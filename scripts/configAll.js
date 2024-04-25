@@ -31,11 +31,11 @@ Aaron/Dylan address
   
   const usdtAddr = "0x43B0AA2206136346dfd2f4F2338CD2A273d94205"
   const WizardsWondersAddr = "0x51F8452d8D80Fc93a04C1391d56aD5872B815B0D"
-  const LootBox1Addr = "0xC241f76e8B3DEf17452fEc1aBfc07736a9103Eb9"
-  const LootBox2Addr = "0x6b4b87E5437C5DcA97E9EE80D4090ccDb96Bfb91"
-  const LootBox3Addr = "0xae1d4cDAB9aaFDc8cB84790e4dE7947b153Dd56B"
-  const LootBox4Addr = "0xbA4dCa66E3932B9387831e62Ec1627D98a15A381"
-  const LootBox5Addr = "0x6577855c25A5ef1eEd339eCF09bbCCA95E67c798"
+  const LootBox1Addr = "0xE0d52061c2DF294369A34Fa45C9E4527b84f81cc"
+  const LootBox2Addr = "0x9eA68cEa4550A85a0002b0CD6b5Dc8377D7d015D"
+  const LootBox3Addr = "0x13812110974C2B302F24Cb22faFB29e071ec3d8a"
+  const LootBox4Addr = "0x5002F1bfC6a8420f8bbb55ce440e608f35e4f282"
+  const LootBox5Addr = "0xddaE360d85FCd4708CE0EBcCe95E66C7cA57e523"
   const GlostoneAddr = "0xe412387B5DDc03c0549e3B1A06bF74b0d01EFe3c"
   const ICOAddr =  "0x3370a9E833E38Ab9Ffe1b89F4Ca04cC935d25307"
   const HexoreAddr = "0x0C872aAE79431615d2A3cc923aa39D2Eb379392B"
@@ -53,7 +53,7 @@ Aaron/Dylan address
   const LootBox3C = await hre.ethers.getContractAt("LootBox", LootBox3Addr);
   const LootBox4C = await hre.ethers.getContractAt("LootBox", LootBox4Addr);
   const LootBox5C = await hre.ethers.getContractAt("LootBox", LootBox5Addr);
-
+/*
   try{
     tx = await usdtTest.mint(getUSdt,"1000000000000000000000000");
     while(tx.blockNumber==null) {
@@ -76,7 +76,7 @@ Aaron/Dylan address
         }
         console.log("1.2 usdtTest mint");
     
-
+*/
 
         /**
          * Permissions
@@ -106,6 +106,7 @@ SETTER_ROLE             0x18e88f21918f867254A83eD3df5d
     
 
 // 1 Hexore
+/*
 const BURNER_ROLE =  "0x3c11d16cbaffd01df69ce1c404f6340ee057498f5f00246190ea54220576a848"
 const MINTER_ROLE =  "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6"
 const BURNER_ROLE_Addr =  "0x18e88f21918f867254A83eD3df5d1BB04a88dd73"
@@ -160,7 +161,7 @@ try{
         console.log("---error 4 IPAUSE_ROLE:----");
     }
     console.log("4 IPAUSE_ROLE");
-
+*/
 //LootBox
 const SETTER_ROLE = "0x61c92169ef077349011ff0b1383c894d86c5f0b41d986366b58a6cf31e93beda"
 const  PAUSE_ROLE = "0x139c2898040ef16910dc9f44dc697df79363da767d8bc92f2e310312b816e46d"

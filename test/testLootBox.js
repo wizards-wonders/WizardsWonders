@@ -32,7 +32,7 @@ Aaron/Dylan address
   const usdtAddr = "0x43B0AA2206136346dfd2f4F2338CD2A273d94205"
   const WizardsWondersAddr = "0x51F8452d8D80Fc93a04C1391d56aD5872B815B0D"
   const HexoreAddress="0x0C872aAE79431615d2A3cc923aa39D2Eb379392B"
-  const LootBox1Addr = "0xC3d8d029Ff2ab0b9503571b5C466A90EE146EF55"
+  const LootBox1Addr = "0xd28Ae3A27A89eFdfCc1dd55ab0C5e4d84c5253b2"
   const LootBox2Addr = "0xc15D6cF6d4B6Cf691629956054fc9E81daCA7Df0"
   const LootBox3Addr = "0xe84908C503FBcfe0707705271c79e7575059D466"
   const LootBox4Addr = "0x32F6B45D3811daAada608aFb0132DDAf0972408D"
@@ -51,28 +51,21 @@ Aaron/Dylan address
   const LootBox1C = await hre.ethers.getContractAt("LootBox", LootBox1Addr);
 
   
-  /*try{
-    tx = await HexoreC.mint(LootBox1Addr,"4000000000000000000");
+  try{
+    tx = await HexoreC.mint(LootBox1Addr,"40000000000000000000");
     while(tx.blockNumber==null) {
         sleep();
         tx =  await hre.ethers.provider.getTransaction(tx.hash);
     }
     }catch (error) {
-        console.log("---error 2.1 WizardsWondersNFT safeMint (:----");
+        console.log("---error 2.1 WizardsWondersNFT HexoreC (:----");
     }
-    console.log("2.1 WizardsWondersNFT safeMint");*/
+    console.log("2.1 HexoreC HexoreC");
     
-        /*address to_, 
-        string memory  tokenHash_,
-        string memory Series_,
-        string memory Type_,
-        string memory Rarity_, 
-        string memory Faction_,  
-        uint256  PointValue_,
-        bool OP_ */
-        /*
+        
+        
     try{
-            tx = await WizardsWondersNFT.safeMint(LootBox1Addr,"abc1","Series_1","CoreSet","Boring","faction1",10,true);
+            tx = await WizardsWondersNFT.safeMint(LootBox1Addr,"abc17","Series_1","CoreSet","Boring","faction1",10,true);
             while(tx.blockNumber==null) {
                 sleep();
                 tx =  await hre.ethers.provider.getTransaction(tx.hash);
@@ -82,7 +75,7 @@ Aaron/Dylan address
             }
             console.log("2.1 WizardsWondersNFT safeMint");
     try{
-            tx = await WizardsWondersNFT.safeMint(LootBox1Addr,"abc2","Series_2","CoreSet","Boring","faction1",100,true);
+            tx = await WizardsWondersNFT.safeMint(LootBox1Addr,"abc18","Series_2","CoreSet","Boring","faction1",100,true);
             while(tx.blockNumber==null) {
                 sleep();
                 tx =  await hre.ethers.provider.getTransaction(tx.hash);
@@ -93,7 +86,7 @@ Aaron/Dylan address
             console.log("2.2 WizardsWondersNFT safeMint");
 
     try{
-            tx = await WizardsWondersNFT.safeMint(LootBox1Addr,"abc3","Series_3","CoreSet","Boring","faction1",200,true);
+            tx = await WizardsWondersNFT.safeMint(LootBox1Addr,"abc19","Series_3","CoreSet","Boring","faction1",200,true);
             while(tx.blockNumber==null) {
                 sleep();
                 tx =  await hre.ethers.provider.getTransaction(tx.hash);
@@ -125,7 +118,7 @@ try{
                 console.log("---error 2.3 LootBox1C setFeeTo (:----");
             }
             console.log("2.3 LootBox1C setFeeTo");
-*/
+
             /*struct LootBoxListS {
                 string[] tokenHashList;
                 uint256 hexoreBonus;
@@ -133,13 +126,13 @@ try{
 
             const LootBoxListS = [
                 [
-                    ["abc1","abc2"],
+                    ["abc17","abc18"],
                     "2000000000000000000"
                 ],
                     
                 
                 [
-                    ["abc3"],
+                    ["abc19"],
                     "1000000000000000000"
                 ]
             ]

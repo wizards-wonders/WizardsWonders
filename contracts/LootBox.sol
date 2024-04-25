@@ -30,7 +30,7 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
     bytes32 public constant SETTING_ROLE = keccak256("SETTER_ROLE");
     bytes32 public constant PAUSE_ROLE = keccak256("PAUSE_ROLE");
 
-    IWizardsWonders.carType public carType;
+    IWizardsWonders.cardType public cardType;
     uint256 public buyBoxIndex; // alread buy lootbox amount
     address public wizardsNFT;
     address public feeTo;
@@ -55,11 +55,11 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
         address _nft, 
         IERC20 _payToken,
         IERC20 _hexoreToken,
-        IWizardsWonders.carType _carType) public {
+        IWizardsWonders.cardType _cardType) public {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setRoleRule();
 
-        carType = _carType;
+        cardType = _cardType;
         wizardsNFT = _nft;
         payToken = _payToken;
         HexoreToken = _hexoreToken;
@@ -73,29 +73,34 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
         price = _price;
     }
 
-    function buyLootBox() public whenNotPaused{
+    function buyLootBox(uint256 _amount) public whenNotPaused{
         // check index
         uint256 curIndex = buyBoxIndex;
-        require(curIndex < lootBoxList.length-1,"LootBox: not lootbox to sale");
-        LootBoxListS memory lbs = lootBoxList[curIndex];
+        require(_amount>0 && _amount <= 30 && curIndex+_amount <= lootBoxList.length,"LootBox: not lootbox to sale");
+        
         // get pay
-        _pay(price);
+        _pay(price.mul(_amount));
 
-        // send nft
-        uint256 nftlen = lbs.tokenHashList.length;
-        require(HexoreToken.balanceOf(address(this)) >= lbs.hexoreBonus,"LootBox: not enough Bounes");
-        if(nftlen >0){
-            for(uint256 i=0; i<nftlen-1;i++){
-                require(IWizardsWonders(wizardsNFT).ownerOf(lbs.tokenHashList[i]) == address(this),"LootBox: not nft owner");
-                IWizardsWonders(wizardsNFT).transferFrom(address(this),msg.sender,lbs.tokenHashList[i]);
+        LootBoxListS memory lbs;
+        for(uint256 i=0; i<_amount; i++){
+            lbs = lootBoxList[curIndex+i];
+            // send nft
+            uint256 nftlen = lbs.tokenHashList.length;
+            require(HexoreToken.balanceOf(address(this)) >= lbs.hexoreBonus,"LootBox: not enough Bounes");
+            if(nftlen >0){
+                for(uint256 j=0; j<=nftlen-1;j++){
+                    require(IWizardsWonders(wizardsNFT).ownerOf(lbs.tokenHashList[j]) == address(this),"LootBox: not nft owner");
+                    IWizardsWonders(wizardsNFT).transferFrom(address(this),msg.sender,lbs.tokenHashList[j]);
+                }
             }
+
+            // send bounes
+            if(lbs.hexoreBonus>0) _payBounes(msg.sender,lbs.hexoreBonus);
+
+            // sendBootbox
+            buyBoxIndex++;
         }
-
-        // send bounes
-        if(lbs.hexoreBonus>0) _payBounes(msg.sender,lbs.hexoreBonus);
-
-        // sendBootbox
-        buyBoxIndex++;
+        
     }
     
     function setBootBoxList(
@@ -112,6 +117,18 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
         LootBoxListS memory _lootList
     ) public onlySetter{
         lootBoxList[_index] = _lootList;
+    }
+
+    function bootBoxInfo() public view returns(uint256 _alreadySold,uint256 _totalSupply){
+        _alreadySold = buyBoxIndex;
+        _totalSupply = lootBoxList.length - _alreadySold ;
+
+    }
+
+    function bootBoxListInfo(uint256 _index) public view returns(uint256 _bounes,string[] memory _tokenHashList ){
+        _bounes = lootBoxList[_index].hexoreBonus;
+        _tokenHashList = new string[](lootBoxList[_index].tokenHashList.length);
+        _tokenHashList = lootBoxList[_index].tokenHashList;
     }
 
     

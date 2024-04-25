@@ -32,7 +32,7 @@ Aaron/Dylan address
   const usdtAddr = "0x43B0AA2206136346dfd2f4F2338CD2A273d94205"
   const WizardsWondersAddr = "0x51F8452d8D80Fc93a04C1391d56aD5872B815B0D"
   const HexoreAddress="0x0C872aAE79431615d2A3cc923aa39D2Eb379392B"
-  const LootBox1Addr = "0xC3d8d029Ff2ab0b9503571b5C466A90EE146EF55"
+  const LootBox1Addr = "0xd28Ae3A27A89eFdfCc1dd55ab0C5e4d84c5253b2"
   const LootBox2Addr = "0xc15D6cF6d4B6Cf691629956054fc9E81daCA7Df0"
   const LootBox3Addr = "0xe84908C503FBcfe0707705271c79e7575059D466"
   const LootBox4Addr = "0x32F6B45D3811daAada608aFb0132DDAf0972408D"
@@ -65,13 +65,13 @@ Aaron/Dylan address
         
 
 try{
-            tx = await LootBox1C.buyLootBox();
+            tx = await LootBox1C.buyLootBox(2);
             while(tx.blockNumber==null) {
                 sleep();
                 tx =  await hre.ethers.provider.getTransaction(tx.hash);
             }
             }catch (error) {
-                console.log("---error 2.3 LootBox1C buyLootBox (:----");
+                console.log("---error 2.3 LootBox1C buyLootBox (:----",error);
             }
             console.log("2.3 LootBox1C buyLootBox");
 
