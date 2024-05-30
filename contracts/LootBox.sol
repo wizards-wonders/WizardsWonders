@@ -17,7 +17,7 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
 
     bytes4 internal constant MAGIC_ON_ERC721_RECEIVED = 0x150b7a02;
     event SetNft(address indexed nft);
-    event SetBootBoxList(LootBoxListS _lootBoxList);
+    event SetLootBoxList(LootBoxListS[] _lootBoxList);
     event BuyLootBox(address indexed user, uint256 num);
 
     struct LootBoxListS {
@@ -103,29 +103,31 @@ contract LootBox is AccessControl, Pausable, ReentrancyGuard {
         
     }
     
-    function setBootBoxList(
+    function setLootBoxList(
         LootBoxListS[] memory _lootLists
     ) public onlySetter{
         uint256 len = _lootLists.length;
         for(uint256 i=0; i<len; i++){
             lootBoxList.push(_lootLists[i]);
         }
+
+        emit SetLootBoxList(_lootLists);
     }
 
-    function changeBootBoxListInfo(
+    function changeLootBoxListInfo(
         uint256 _index,
         LootBoxListS memory _lootList
     ) public onlySetter{
         lootBoxList[_index] = _lootList;
     }
 
-    function bootBoxInfo() public view returns(uint256 _alreadySold,uint256 _totalSupply){
+    function lootBoxInfo() public view returns(uint256 _alreadySold,uint256 _totalSupply){
         _alreadySold = buyBoxIndex;
         _totalSupply = lootBoxList.length - _alreadySold ;
 
     }
 
-    function bootBoxListInfo(uint256 _index) public view returns(uint256 _bounes,string[] memory _tokenHashList ){
+    function lootBoxListInfo(uint256 _index) public view returns(uint256 _bounes,string[] memory _tokenHashList ){
         _bounes = lootBoxList[_index].hexoreBonus;
         _tokenHashList = new string[](lootBoxList[_index].tokenHashList.length);
         _tokenHashList = lootBoxList[_index].tokenHashList;
